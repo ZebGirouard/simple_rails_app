@@ -8,6 +8,9 @@ gem 'rails', '4.0.5'
 gem 'bootstrap-sass', '2.3.1.0'
 gem 'sprockets', '2.11.0'
 
+#Get ye olde Bcrypt
+gem 'bcrypt-ruby', '3.1.2'
+
 # Use sqlite3 as the database for Active Record
 group :development, :test do
 	gem 'sqlite3', '1.3.8'
