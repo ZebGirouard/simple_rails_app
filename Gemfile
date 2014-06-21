@@ -11,6 +11,13 @@ gem 'sprockets', '2.11.0'
 #Get ye olde Bcrypt
 gem 'bcrypt-ruby', '3.1.2'
 
+#Fakin' it to the max
+gem 'faker', '1.1.2'
+
+#Everbody's pagin' for the weekend
+gem 'will_paginate', '3.0.4'
+gem 'bootstrap-will_paginate', '0.0.9'
+
 # Use sqlite3 as the database for Active Record
 group :development, :test do
 	gem 'sqlite3', '1.3.8'
