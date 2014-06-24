@@ -4,8 +4,12 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User deleted."
+    if User.find(params[:id]).admin?
+      flash[:failure] = "You can't delete yourself, man."
+    else
+      User.find(params[:id]).destroy
+      flash[:success] = "User deleted."
+    end
     redirect_to users_url
   end
 
@@ -36,6 +40,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    redirect_to(root_url) if signed_in? 
     @user = User.new(user_params)
     if @user.save
    	  sign_in @user
