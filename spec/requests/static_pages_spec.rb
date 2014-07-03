@@ -18,17 +18,36 @@ describe "Static pages" do
     it { should_not have_title('| Home') }
 
     describe "for signed-in users" do
-      let(:user) { FactoryGirl.create(:user) }
-      before do
-        FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
-        FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet")
-        sign_in user
-        visit root_path
+
+      describe "only one post" do
+        let(:user) { FactoryGirl.create(:user) }
+        before do
+          FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
+          sign_in user
+          visit root_path
+        end
+        it "should not have an s if only one micropost" do
+          expect(page).to have_no_content('microposts')
+        end
       end
 
-      it "should render the user's feed" do
-        user.feed.each do |item|
-          expect(page).to have_selector("li##{item.id}", text: item.content)
+      describe "forty posts" do
+        let(:user) { FactoryGirl.create(:user) }
+        before do
+          40.times {FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")}
+          sign_in user
+          visit root_path
+        end
+
+        describe "pagination" do
+          it { should have_selector('div.pagination') }
+        end
+        
+        it "should render the user's feed" do
+          expect(page).to have_content('microposts')
+          user.feed.first(30).each do |item|
+            expect(page).to have_selector("li##{item.id}", text: item.content)
+          end
         end
       end
     end
