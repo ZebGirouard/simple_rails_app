@@ -16,16 +16,16 @@ describe "MicropostPages" do
       end
 
       describe "error messages" do
-        before { click_button "Post" }
+        before { first(:button, "Post").click }
         it { should have_content('error') }
       end
     end
 
     describe "with valid information" do
 
-      before { fill_in 'micropost_content', with: "Lorem ipsum" }
+      before { fill_in('micropost_content', with: "Lorem ipsum", :match => :first) }
       it "should create a micropost" do
-        expect { click_button "Post" }.to change(Micropost, :count).by(1)
+        expect { first(:button, "Post").click }.to change(Micropost, :count).by(1)
       end
     end
   end
