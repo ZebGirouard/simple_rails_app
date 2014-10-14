@@ -1,11 +1,11 @@
 {
   "built_on": "master",
-  "duration": 38.133000082,
-  "full_display_name": "sample_app_rails #25",
-  "id": "2014-10-14_10-37-20",
-  "number": 25,
+  "duration": 31.285000015,
+  "full_display_name": "sample_app_rails #27",
+  "id": "2014-10-14_11-27-02",
+  "number": 27,
   "result": "SUCCESS",
   "status_message": "?",
-  "time": "2014-10-14 10:37:20 -0400",
-  "url": "job/sample_app_rails/25/"
+  "time": "2014-10-14 11:27:02 -0400",
+  "url": "job/sample_app_rails/27/"
 }
